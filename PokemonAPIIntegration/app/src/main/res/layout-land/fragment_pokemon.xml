@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    tools:context=".PokemonFrag">
+
+    <ScrollView
+        android:layout_width="319dp"
+        android:layout_height="202dp"
+        android:layout_margin="30dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/searchPokemon"
+                android:layout_width="308dp"
+                android:layout_height="78dp"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="ditto" />
+
+            <Button
+                android:id="@+id/pokemonSearchBtn"
+                android:layout_width="304dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="search" />
+
+            <ImageView
+                android:id="@+id/pokemonPicture"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_margin="10dp"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/pokemonName"
+                android:layout_width="305dp"
+                android:layout_height="57dp"
+                android:layout_margin="10dp"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/pokemonTypes"
+                android:layout_width="303dp"
+                android:layout_height="52dp"
+                android:layout_margin="10dp"
+                android:text="TextView" />
+
+            <Button
+                android:id="@+id/playPokemonSound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="sound"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
