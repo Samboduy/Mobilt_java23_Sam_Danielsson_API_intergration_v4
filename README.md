@@ -7,7 +7,8 @@ I denna uppgift så har jag använt mig av poke api, picasso biblioteket. Jag ha
  Jag använder mig av https://pokeapi.co/api/v2/pokemon/pokemon_name  endpointen för att få tag på pokemons namn,typ,bild och hur den låter. Jag har bara använt en liten del av informationen som man får.
 
 Jag använder picasso för att se till så att bilden blir tillräckligt stor och så att den hamnar i rätt vy. Jag delar upp objektet till två olika delar, en för att få fram bilden och en annan för att få fram ljudfilen. 
-![<img width="537" alt="image" src="https://github.com/user-attachments/assets/f36023ae-1679-4894-9d3f-a911002658da">]
+
+<img width="537" alt="image" src="https://github.com/user-attachments/assets/f36023ae-1679-4894-9d3f-a911002658da">
 
 
 Jag hämtar ljudfilen och laddar in den till en mediaspelare och startar den när man trycker på ljudknappen.
