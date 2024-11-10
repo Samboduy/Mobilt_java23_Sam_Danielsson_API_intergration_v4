@@ -11,6 +11,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.fragment.app.viewModels
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
@@ -28,6 +29,7 @@ class PokemonFrag : Fragment() {
     lateinit var jsonObject:JSONObject
     lateinit var types:String
     lateinit var pokemonView:ImageView
+    private val PokemonViewModel : PokemonViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +42,11 @@ class PokemonFrag : Fragment() {
         searchView = view.findViewById(R.id.searchPokemon)
         typesView = view.findViewById(R.id.pokemonTypes)
         nameView = view.findViewById(R.id.pokemonName)
-        pokemonView = view.findViewById(R.id.pokemonPicture)
+        this.pokemonView = view.findViewById(R.id.pokemonPicture)
+
+        getPokemonSpriteFirstTime()
+        this.nameView.text = "name: " + PokemonViewModel.pokename
+        this.typesView.text = "Types: " + "" + PokemonViewModel.types
 
         searchBtn.setOnClickListener{
             pokemonSoundBtn.visibility = View.VISIBLE
@@ -50,16 +56,16 @@ class PokemonFrag : Fragment() {
                 val rq: RequestQueue = Volley.newRequestQueue(activity)
                 var request = StringRequest(Request.Method.GET,completeURL,
                     {
-                        res -> jsonObject = JSONObject(res)
+                        res -> jsonObject =  JSONObject(res)
                         Log.i("Sam",jsonObject.toString())
                         var jsArr = jsonObject.getJSONArray("abilities")
-                        var pokeName:String = jsonObject.getString("name")
-                        nameView.text = "name: " +  pokeName
+                        PokemonViewModel.pokename = jsonObject.getString("name")
+                        this.nameView.text = "name: " +  PokemonViewModel.pokename
                         var abilityName = jsArr.getJSONObject(0)
                         Log.i("SAm", "ARRAY: " + jsArr[0].toString())
                         Log.i("Sam", "ability: " + abilityName.getJSONObject("ability").getString("name"))
                         getPokemonTypes()
-                        typesView.text = "types: " + types
+                        this.typesView.text = "types: " + types
                         getPokemonSprite()
 
                     },{
@@ -84,13 +90,19 @@ class PokemonFrag : Fragment() {
             types = types + typesArr.getJSONObject(i).getJSONObject("type").getString("name") + " "
             Log.i("Sam", types)
         }
+        PokemonViewModel.types = types
         types.trim()
     }
 
     fun getPokemonSprite(){
         var pokemonSpriteObject:JSONObject = jsonObject.getJSONObject("sprites")
-        val pokemonPictureUrl = pokemonSpriteObject.getString("front_default")
-        Picasso.get().load(pokemonPictureUrl).resize(200,200).into(pokemonView)
+        PokemonViewModel.pokemonPictureUrl = pokemonSpriteObject.getString("front_default")
+        Log.i("Sam", PokemonViewModel.pokemonPictureUrl)
+        Picasso.get().load(PokemonViewModel.pokemonPictureUrl).resize(200,200).into(pokemonView)
+    }
+    fun getPokemonSpriteFirstTime(){
+        Log.i("Sam", PokemonViewModel.pokemonPictureUrl)
+        Picasso.get().load(PokemonViewModel.pokemonPictureUrl).resize(200,200).into(pokemonView)
     }
 
     fun getPokemonSound(){

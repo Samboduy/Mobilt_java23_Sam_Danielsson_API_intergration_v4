@@ -27,7 +27,6 @@ class NavFrag : Fragment() {
         }
         searchPokemonNavBtn.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.goFromNavigationToPokemon)
-
         }
 
         return view

@@ -36,7 +36,7 @@ android {
 }
 
 dependencies {
-
+    implementation("androidx.activity:activity-ktx:1.9.3")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -50,4 +50,5 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.picasso)
+    implementation(kotlin("script-runtime"))
 }
