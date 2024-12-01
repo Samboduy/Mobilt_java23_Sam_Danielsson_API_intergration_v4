@@ -9,9 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 
 
 lateinit var loginText:TextView
@@ -29,14 +31,18 @@ lateinit var btn:Button
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_log_in, container, false)
 
+        //var fm:FragmentManager = requireActivity().supportFragmentManager;
 
+        val nc:NavController = findNavController();
 
         text = view.findViewById(R.id.userEmail)
         text.text = "HJOLP"
         btn = view.findViewById(R.id.btnLogin)
         btn.setOnClickListener{
-            Navigation.findNavController(view).navigate(R.id.goFromLoginToNavigation)
-            
+
+
+            nc.navigate(R.id.goFromLoginToNavigation)
+
         }
 
 
